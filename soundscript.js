@@ -3,7 +3,7 @@
 
 
 const image = document.getElementById("shrek-image");
-const sound = new Audio("./material/sound.mp3");
+const sound = new Audio("./media/3. Babos Party Pt. 2.mp3");
 
 image.addEventListener("click", () => {
     sound.currentTime = 0;
