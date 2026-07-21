@@ -1,17 +1,7 @@
-// Handles loading animation
-const loadingAnimation = document.getElementById('loading-animation');
-
-const onProgress = (event) => {
-  if (event.detail.totalProgress === 1) {
-    loadingAnimation.classList.remove('show');
-    event.target.removeEventListener('progress', onProgress);
-  }
-};
-document.querySelector('model-viewer').addEventListener('progress', onProgress);
-
-// Model switching functionality
+// Wait for model-viewer to be ready
 const modelViewer = document.getElementById('model-viewer');
 const modelInfo = document.getElementById('model-info');
+const loadingAnimation = document.getElementById('loading-animation');
 
 // Define your models here - add more as needed
 const models = [
@@ -21,6 +11,13 @@ const models = [
 
 let currentModelIndex = 0;
 
+const onProgress = (event) => {
+  if (event.detail.totalProgress === 1) {
+    loadingAnimation.classList.remove('show');
+    event.target.removeEventListener('progress', onProgress);
+  }
+};
+
 // Function to load a model
 function loadModel(index) {
   const model = models[index];
@@ -28,13 +25,18 @@ function loadModel(index) {
   modelViewer.src = model.src;
   modelViewer.poster = model.poster;
   modelInfo.textContent = model.name;
-
-  // Re-add progress listener for new model
   modelViewer.addEventListener('progress', onProgress);
 }
 
-// Initialize
-loadModel(currentModelIndex);
+// Initialize once model-viewer is ready
+function initialize() {
+  if (customElements.get('model-viewer')) {
+    loadModel(currentModelIndex);
+  } else {
+    customElements.whenDefined('model-viewer').then(initialize);
+  }
+}
+initialize();
 
 // Next model button
 document.getElementById('next-model').addEventListener('click', () => {
