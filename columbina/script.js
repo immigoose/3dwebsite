@@ -19,6 +19,7 @@ const modelInfo = document.getElementById('model-info');
 // Define your models here - add more as needed
 const models = [
   { src: 'Columbina.glb', poster: 'poster.webp', name: 'Columbina' },
+  { src: 'ganymed.glb', poster: 'poster.webp', name: 'Ganymed' },
 ];
 
 let currentModelIndex = 0;
