@@ -1,13 +1,10 @@
-// Handles loading the events for <model-viewer>'s slotted progress bar
+// Handles loading animation
+const loadingAnimation = document.getElementById('loading-animation');
+
 const onProgress = (event) => {
-  const progressBar = event.target.querySelector('.progress-bar');
-  const updatingBar = event.target.querySelector('.update-bar');
-  updatingBar.style.width = `${event.detail.totalProgress * 100}%`;
   if (event.detail.totalProgress === 1) {
-    progressBar.classList.add('hide');
+    loadingAnimation.classList.remove('show');
     event.target.removeEventListener('progress', onProgress);
-  } else {
-    progressBar.classList.remove('hide');
   }
 };
 document.querySelector('model-viewer').addEventListener('progress', onProgress);
@@ -27,6 +24,7 @@ let currentModelIndex = 0;
 // Function to load a model
 function loadModel(index) {
   const model = models[index];
+  loadingAnimation.classList.add('show');
   modelViewer.src = model.src;
   modelViewer.poster = model.poster;
   modelInfo.textContent = model.name;
