@@ -11,6 +11,9 @@
     <div class="model-container">
       <button class="nav-arrow" id="prev-model">&#10094;</button>
       <model-viewer id="model-viewer" src="Columbina.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1">
+        <div id="loading-animation" class="loading-animation">
+          <img src="media/Walker man.svg" alt="Loading...">
+        </div>
         <button slot="ar-button" id="ar-button">
             View in your space
         </button>
@@ -18,9 +21,6 @@
             <img src="ar_hand_prompt.png">
         </div>
       </model-viewer>
-      <div id="loading-animation" class="loading-animation">
-        <img src="media/Walker man.svg" alt="Loading...">
-      </div>
       <button class="nav-arrow" id="next-model">&#10095;</button>
     </div>
     <div id="model-info"></div>

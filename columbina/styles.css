@@ -71,7 +71,6 @@ model-viewer {
   transform: translate(-50%, -50%);
   z-index: 20;
   display: none;
-  pointer-events: none;
 }
 
 .loading-animation.show {
@@ -89,6 +88,7 @@ model-viewer {
   50% { transform: translateX(10px) scaleX(-1); }
   100% { transform: translateX(0) scaleX(1); }
 }
+
 
 #ar-button {
   background-image: url(ar_icon.png);
