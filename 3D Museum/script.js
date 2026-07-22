@@ -65,28 +65,52 @@ const modelDescription = document.getElementById('model-description');
 // Define your models here - add more as needed
 const models = [
   { 
-    src: 'Columbina.glb', 
-    poster: 'poster.webp', 
-    name: 'Columbina',
-    description: '<h3>Columbina</h3><p>Columbina is a stock character in the Commedia dell\'arte. She is usually depicted as a clever and witty servant girl, often involved in intrigues and love affairs.</p>'
-  },
-  { 
-    src: 'ganymed.glb', 
-    poster: 'poster.webp', 
-    name: 'Ganymed',
-    description: '<h3>Ganymed</h3><p>In Greek mythology, Ganymede was a beautiful Trojan prince who was abducted by Zeus to serve as cupbearer to the gods on Mount Olympus.</p>'
-  },
-  { 
     src: 'venus.glb', 
     poster: 'venus.webp', 
-    name: 'Venus von Willendorf',
-    description: '<h3>Venus von Willendorf</h3><p>Venus von Willendorf is a historical figure known for her role in the Renaissance period.</p>'
+    name: 'Venus of Willendorf',
+    description: '<h3>Venus of Willendorf<p id="year">~30,000 BP</p></h3><p>Venus of Willendorf is a historical figure known for her role in the Renaissance period.</p>'
+  },
+  { 
+    src: 'sekhmet.glb', 
+    poster: 'sekhmet.webp', 
+    name: 'Sekhmet',
+    description: '<h3>Sekhmet</h3><p id="year">~30,000 y/o</p><p>Sekhmet is a goddess in ancient Egyptian religion, often depicted as a lioness or woman with a lioness head.</p>'
+  },
+   { 
+    src: 'aphrodite of milos.glb', 
+    poster: 'poster.webp', 
+    name: 'Aphrodite of Milos',
+    description: '<h3>Aphrodite of Milos<p id="year">~30,000 y/o</p></h3><p>The Aphrodite of Milos, also known as the Venus de Milo, is a famous ancient Greek statue depicting the goddess Aphrodite.</p>'
+  },
+  { 
+    src: 'guanyin.glb', 
+    poster: 'guanyin.webp', 
+    name: 'Guanyin',
+    description: '<h3>Guanyin</h3><p id="year">1100–1200</p><p>Guanyin is a bodhisattva in Mahayana Buddhism, known for her compassion and ability to save beings from suffering.</p>'
   },
   { 
     src: 'madonna.glb', 
     poster: 'madonna.webp', 
     name: 'Madonna',
-    description: '<h3>Madonna</h3><p>The Madonna is a common subject in Christian art, typically depicting the Virgin Mary with the Christ Child.</p>'
+    description: '<h3>Madonna</h3><p id="year">~30,000 y/o</p><p>The Madonna is a common subject in Christian art, typically depicting the Virgin Mary with the Christ Child.</p>'
+  },
+   { 
+    src: 'queen victoria.glb', 
+    poster: 'queen_victoria.webp', 
+    name: 'Queen Victoria',
+    description: '<h3>Queen Victoria</h3><p id="year">1888</p><p>Queen Victoria was the monarch of the United Kingdom from 1837 to 1901.</p>'
+  },
+   { 
+    src: 'lara croft.glb', 
+    poster: 'poster.webp', 
+    name: 'Lara Croft',
+    description: '<h3>Lara Croft</h3><p id="year">1996</p><p>Lara Croft is a fictional character and the protagonist of the Tomb Raider video game series.</p>'
+  },
+  { 
+    src: 'Columbina.glb', 
+    poster: 'poster.webp', 
+    name: 'Columbina',
+    description: '<h3>Columbina</h3><p id="year">2025</p><p>Columbina is a stock character in the Commedia dell\'arte. She is usually depicted as a clever and witty servant girl, often involved in intrigues and love affairs.</p>'
   },
 ];
 
