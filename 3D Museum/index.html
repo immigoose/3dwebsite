@@ -8,6 +8,14 @@
     <link type="text/css" href="./styles.css" rel="stylesheet"/>
   </head>
   <body>
+    <button id="gallery-button">Gallery</button>
+    <div id="gallery-menu">
+      <div class="gallery-menu-header">
+        <span>Gallery</span>
+        <button class="gallery-menu-close" id="gallery-menu-close">&times;</button>
+      </div>
+      <div id="gallery-menu-items"></div>
+    </div>
     <div class="model-container">
       <button class="nav-arrow" id="prev-model">&#10094;</button>
       <model-viewer id="model-viewer" src="Columbina.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1">

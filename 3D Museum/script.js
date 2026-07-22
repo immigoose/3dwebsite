@@ -9,6 +9,54 @@ const onProgress = (event) => {
 };
 document.querySelector('model-viewer').addEventListener('progress', onProgress);
 
+// Gallery menu functionality
+const galleryButton = document.getElementById('gallery-button');
+const galleryMenu = document.getElementById('gallery-menu');
+const galleryMenuClose = document.getElementById('gallery-menu-close');
+const galleryMenuItems = document.getElementById('gallery-menu-items');
+
+// Function to toggle menu
+function toggleMenu() {
+  const isMenuOpen = galleryMenu.classList.toggle('show');
+  galleryButton.style.display = isMenuOpen ? 'none' : 'block';
+}
+
+// Function to populate menu items
+function populateMenuItems() {
+  galleryMenuItems.innerHTML = '';
+  models.forEach((model, index) => {
+    const item = document.createElement('div');
+    item.className = 'gallery-menu-item';
+    if (index === currentModelIndex) {
+      item.classList.add('active');
+    }
+    item.textContent = model.name;
+    item.addEventListener('click', () => {
+      currentModelIndex = index;
+      loadModel(currentModelIndex);
+      toggleMenu();
+      updateActiveMenuItem();
+    });
+    galleryMenuItems.appendChild(item);
+  });
+}
+
+// Function to update active menu item
+function updateActiveMenuItem() {
+  const items = galleryMenuItems.querySelectorAll('.gallery-menu-item');
+  items.forEach((item, index) => {
+    if (index === currentModelIndex) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+    }
+  });
+}
+
+// Event listeners for menu
+galleryButton.addEventListener('click', toggleMenu);
+galleryMenuClose.addEventListener('click', toggleMenu);
+
 // Model switching functionality
 const modelViewer = document.getElementById('model-viewer');
 const modelInfo = document.getElementById('model-info');
@@ -27,6 +75,18 @@ const models = [
     poster: 'poster.webp', 
     name: 'Ganymed',
     description: '<h3>Ganymed</h3><p>In Greek mythology, Ganymede was a beautiful Trojan prince who was abducted by Zeus to serve as cupbearer to the gods on Mount Olympus.</p>'
+  },
+  { 
+    src: 'venus.glb', 
+    poster: 'venus.webp', 
+    name: 'Venus von Willendorf',
+    description: '<h3>Venus von Willendorf</h3><p>Venus von Willendorf is a historical figure known for her role in the Renaissance period.</p>'
+  },
+  { 
+    src: 'madonna.glb', 
+    poster: 'madonna.webp', 
+    name: 'Madonna',
+    description: '<h3>Madonna</h3><p>The Madonna is a common subject in Christian art, typically depicting the Virgin Mary with the Christ Child.</p>'
   },
 ];
 
@@ -64,6 +124,7 @@ function loadModel(index) {
   modelViewer.poster = model.poster;
   modelInfo.textContent = model.name;
   hideModelDescription();
+  updateActiveMenuItem();
 
   // Re-add progress listener for new model
   modelViewer.addEventListener('progress', onProgress);
@@ -79,6 +140,7 @@ function loadModel(index) {
 
 // Initialize
 loadModel(currentModelIndex);
+populateMenuItems();
 
 // Toggle description when clicking the INFO button
 document.getElementById('info-button').addEventListener('click', (e) => {
