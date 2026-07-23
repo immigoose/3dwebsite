@@ -57,6 +57,29 @@ function updateActiveMenuItem() {
 galleryButton.addEventListener('click', toggleMenu);
 galleryMenuClose.addEventListener('click', toggleMenu);
 
+// Abstract modal functionality
+const abstractButton = document.getElementById('abstract-button');
+const abstractModal = document.getElementById('abstract-modal');
+const closeAbstract = document.getElementById('close-abstract');
+
+function showAbstract() {
+  abstractModal.classList.add('show');
+}
+
+function hideAbstract() {
+  abstractModal.classList.remove('show');
+}
+
+abstractButton.addEventListener('click', showAbstract);
+closeAbstract.addEventListener('click', hideAbstract);
+
+// Close abstract modal when clicking outside
+abstractModal.addEventListener('click', (e) => {
+  if (e.target === abstractModal) {
+    hideAbstract();
+  }
+});
+
 // Model switching functionality
 const modelViewer = document.getElementById('model-viewer');
 const modelInfo = document.getElementById('model-info');
@@ -67,50 +90,62 @@ const models = [
   { 
     src: 'venus.glb', 
     poster: 'venus.webp', 
-    name: 'Venus of Willendorf',
-    description: '<h3>Venus of Willendorf<p id="year">~30,000 BP</p></h3><p>Venus of Willendorf is a historical figure known for her role in the Renaissance period.</p>'
+    name: '1. Venus of Willendorf',
+    description: '<h3>Venus of Willendorf<p id="year">~30,000 BP</p></h3> <p>Venus of Willendorf, also simply called the "Woman of Willendorf", due to the goddess Venus not having yet been worshipped, is a small sculpture depicting a female body. Some interprete the figure to be a deity of fertility, while others believe she might have been a sort of self portrait.</p>',
   },
-  { 
+    { 
     src: 'sekhmet.glb', 
     poster: 'sekhmet.webp', 
-    name: 'Sekhmet',
-    description: '<h3>Sekhmet</h3><p id="year">~30,000 y/o</p><p>Sekhmet is a goddess in ancient Egyptian religion, often depicted as a lioness or woman with a lioness head.</p>'
+    name: '2. Sekhmet',
+    description: '<h3>Sekhmet<p id="year">~1500 BC, Egypt</p></h3><p>Sekhmet is a goddess in ancient Egyptian religion, often depicted as a lioness or woman with a lioness head, symbolizing both desctruction and healing and is, as the daughter of the sun god Ra, one of the more important deities. This depiction shows her standing with a papyrus-staff, the base and arms missing or damaged. </p>'
   },
    { 
     src: 'aphrodite of milos.glb', 
     poster: 'poster.webp', 
-    name: 'Aphrodite of Milos',
-    description: '<h3>Aphrodite of Milos<p id="year">~30,000 y/o</p></h3><p>The Aphrodite of Milos, also known as the Venus de Milo, is a famous ancient Greek statue depicting the goddess Aphrodite.</p>'
+    name: '3. Aphrodite of Milos',
+    description: '<h3>Aphrodite of Milos<p id="year">~140 BC, Greece</p></h3><p>The Aphrodite of Milos, also known as the Venus de Milo, is a famous ancient Greek statue depicting the goddess Aphrodite. It is one of the most famous and influential depictions of the personification of love and beauty, serving as a beauty standard and beacon of antiquity.</p>'
+  },
+  { 
+    src: 'nike.glb', 
+    poster: 'poster.webp', 
+    name: '4. Nike',
+    description: '<h3>Nike<p id="year">~300 BC, Greece</p></h3><p>Nike is a Greek goddess of victory, often depicted as a winged figure. The fractured statue is missing both the arms and head, just leaving a figure hugging dress to highlight the body shape as well as the opulent, detailed wings in a landing position, bracing the incoming wind.</p>'
   },
   { 
     src: 'guanyin.glb', 
     poster: 'guanyin.webp', 
-    name: 'Guanyin',
-    description: '<h3>Guanyin</h3><p id="year">1100–1200</p><p>Guanyin is a bodhisattva in Mahayana Buddhism, known for her compassion and ability to save beings from suffering.</p>'
+    name: '5. Guanyin',
+    description: '<h3>Guanyin<p id="year">1100–1200, China</p></h3><p>The bodhisattva is an enlightened being dedicated to the spiritual awakening of all beings. The compassionate bodhisattva Guanyin, in a variety of manifestations, is probably the most popular deity of worship in Chinese Buddhism. The deity originated as the male bodhisattva Avalokitesvara in India but gradually transitioned into a predominantly female figure (or goddess of mercy) in East Asia over hundreds of years.</p>'
   },
   { 
     src: 'madonna.glb', 
     poster: 'madonna.webp', 
-    name: 'Madonna',
-    description: '<h3>Madonna</h3><p id="year">~30,000 y/o</p><p>The Madonna is a common subject in Christian art, typically depicting the Virgin Mary with the Christ Child.</p>'
+    name: '6. Madonna z Krużlowej',
+    description: '<h3> Madonna z Krużlowej (Madonna of Krużlowej)<p id="year">~1410, Poland</p></h3> <p>Madonna z Krużlowej is a Gothic sculpture of the Virgin Mary. The Madonna is the most depicted woman in Western art, here seen with Christ resting on her hip, depicting a woman as a mother and a symbol of power, due to the crown gracing her head, symbolizing her status as the mother of Jesus.</p>'  
   },
    { 
     src: 'queen victoria.glb', 
     poster: 'queen_victoria.webp', 
-    name: 'Queen Victoria',
-    description: '<h3>Queen Victoria</h3><p id="year">1888</p><p>Queen Victoria was the monarch of the United Kingdom from 1837 to 1901.</p>'
+    name: '7. Queen Victoria',
+    description: '<h3>Queen Victoria<p id="year">1888, United Kingdom</p></h3><p>Queen Victoria was the monarch of the United Kingdom from 1837 to 1901. Being and influential figure of the victorian era, she pioneered many fashion trends for women of the time.</p>'
+  },
+   { 
+    src: 'La Baigneuse drapée.glb', 
+    poster: 'poster.webp', 
+    name: '8. La Baigneuse drapée',
+    description: '<h3>La Baigneuse drapée<p id="year">1937, France</p></h3><p>La Baigneuse drapée is a famous sculpture by Aristide Maillol, depicting a woman bathing with a cloth hanging. While the body is partially covered, most of her figure is clearly visible, created in an impressionistic style.</p>'
   },
    { 
     src: 'lara croft.glb', 
     poster: 'poster.webp', 
-    name: 'Lara Croft',
-    description: '<h3>Lara Croft</h3><p id="year">1996</p><p>Lara Croft is a fictional character and the protagonist of the Tomb Raider video game series.</p>'
+    name: '9. Lara Croft',
+    description: '<h3>Lara Croft<p id="year">1996</p></h3><p>Lara Croft is a fictional character and the protagonist of the Tomb Raider video game series. Know for her iconic low poly look, the game is unique for featuring a female protagonist. The big game levels and for its time cutting edge technology pushed the console capacities to its limits. </p>'
   },
   { 
     src: 'Columbina.glb', 
     poster: 'poster.webp', 
-    name: 'Columbina',
-    description: '<h3>Columbina</h3><p id="year">2025</p><p>Columbina is a stock character in the Commedia dell\'arte. She is usually depicted as a clever and witty servant girl, often involved in intrigues and love affairs.</p>'
+    name: '10. Columbina',
+    description: '<h3>Columbina<p id="year">2025</p></h3><p>Columbina is a character from the gacha video game "Genshin Impact". As a moon goddess her design features a elegant and graceful appearance, depicted with a flowing dress with many moon symbols and a gentle expression. Being released just last year, the 3D model shows a high level of detail</p>'
   },
 ];
 
@@ -143,7 +178,6 @@ function loadModel(index) {
     savedCameraOrbit = modelViewer.cameraOrbit;
   }
   
-  loadingAnimation.classList.add('show');
   modelViewer.src = model.src;
   modelViewer.poster = model.poster;
   modelInfo.textContent = model.name;
