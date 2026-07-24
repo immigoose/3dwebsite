@@ -214,7 +214,7 @@ model-viewer {
 .transition-animation {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  right: 140px;
   width: 100px;
   height: 100px;
   display: none;
@@ -342,6 +342,67 @@ model-viewer > #ar-prompt > img {
 
 #abstract-button:hover {
   background: rgba(0, 0, 0, 0.9);
+}
+
+#video-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 50;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s;
+  font-family: 'CaslonAntique', sans-serif;
+}
+
+#video-button:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 70;
+  display: none;
+}
+
+.video-modal.show {
+  display: flex;
+}
+
+.video-modal video {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.video-modal .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+  font-family: 'CaslonAntique', sans-serif;
+}
+
+.video-modal .close-btn:hover {
+  color: #ccc;
 }
 
 .abstract-modal {

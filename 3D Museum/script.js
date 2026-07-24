@@ -80,6 +80,35 @@ abstractModal.addEventListener('click', (e) => {
   }
 });
 
+// Video modal functionality
+const videoButton = document.getElementById('video-button');
+const videoModal = document.getElementById('video-modal');
+const closeVideo = document.getElementById('close-video');
+const mobileVideo = document.getElementById('mobile-video');
+
+function showVideo() {
+  videoModal.classList.add('show');
+  mobileVideo.currentTime = 0;
+  mobileVideo.play().catch(error => {
+    console.error("Video could not be played:", error);
+  });
+}
+
+function hideVideo() {
+  videoModal.classList.remove('show');
+  mobileVideo.pause();
+}
+
+videoButton.addEventListener('click', showVideo);
+closeVideo.addEventListener('click', hideVideo);
+
+// Close video modal when clicking outside
+videoModal.addEventListener('click', (e) => {
+  if (e.target === videoModal) {
+    hideVideo();
+  }
+});
+
 // Model switching functionality
 const modelViewer = document.getElementById('model-viewer');
 const modelInfo = document.getElementById('model-info');
