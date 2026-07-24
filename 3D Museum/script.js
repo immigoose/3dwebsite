@@ -1,4 +1,4 @@
-// Handles loading animation
+//loding animation
 const loadingAnimation = document.getElementById('loading-animation');
 
 const onProgress = (event) => {
@@ -9,19 +9,19 @@ const onProgress = (event) => {
 };
 document.querySelector('model-viewer').addEventListener('progress', onProgress);
 
-// Gallery menu functionality
+// Gallery menu 
 const galleryButton = document.getElementById('gallery-button');
 const galleryMenu = document.getElementById('gallery-menu');
 const galleryMenuClose = document.getElementById('gallery-menu-close');
 const galleryMenuItems = document.getElementById('gallery-menu-items');
 
-// Function to toggle menu
+//toggle menu
 function toggleMenu() {
   const isMenuOpen = galleryMenu.classList.toggle('show');
   galleryButton.style.display = isMenuOpen ? 'none' : 'block';
 }
 
-// Function to populate menu items
+//populate menu items
 function populateMenuItems() {
   galleryMenuItems.innerHTML = '';
   models.forEach((model, index) => {
@@ -41,7 +41,7 @@ function populateMenuItems() {
   });
 }
 
-// Function to update active menu item
+//update active menu item
 function updateActiveMenuItem() {
   const items = galleryMenuItems.querySelectorAll('.gallery-menu-item');
   items.forEach((item, index) => {
@@ -53,7 +53,7 @@ function updateActiveMenuItem() {
   });
 }
 
-// Event listeners for menu
+//listeners for menu
 galleryButton.addEventListener('click', toggleMenu);
 galleryMenuClose.addEventListener('click', toggleMenu);
 
@@ -84,8 +84,9 @@ abstractModal.addEventListener('click', (e) => {
 const modelViewer = document.getElementById('model-viewer');
 const modelInfo = document.getElementById('model-info');
 const modelDescription = document.getElementById('model-description');
+const transitionAnimation = document.getElementById('transition-animation');
 
-// Define your models here - add more as needed
+
 const models = [
   { 
     src: 'venus.glb', 
@@ -151,10 +152,9 @@ const models = [
 
 let currentModelIndex = 0;
 
-// Save initial camera orbit for consistent framing
 let savedCameraOrbit = null;
 
-// Function to show model description
+//show model description
 function showModelDescription() {
   const model = models[currentModelIndex];
   modelDescription.innerHTML = `
@@ -164,16 +164,16 @@ function showModelDescription() {
   modelDescription.classList.add('show');
 }
 
-// Function to hide model description
+//hide model description
 function hideModelDescription() {
   modelDescription.classList.remove('show');
 }
 
-// Function to load a model
+// load a model
 function loadModel(index) {
   const model = models[index];
   
-  // Save current camera orbit before changing model (only first time)
+  // Save current camera orbit before changing model
   if (savedCameraOrbit === null && modelViewer.cameraOrbit) {
     savedCameraOrbit = modelViewer.cameraOrbit;
   }
@@ -184,10 +184,16 @@ function loadModel(index) {
   hideModelDescription();
   updateActiveMenuItem();
 
-  // Re-add progress listener for new model
+  // transition animation for 2.5 seconds
+  transitionAnimation.classList.add('show');
+  setTimeout(() => {
+    transitionAnimation.classList.remove('show');
+  }, 2500);
+
+
   modelViewer.addEventListener('progress', onProgress);
   
-  // Restore camera orbit after model loads
+
   const restoreCamera = () => {
     if (savedCameraOrbit) {
       modelViewer.cameraOrbit = savedCameraOrbit;
@@ -196,11 +202,11 @@ function loadModel(index) {
   modelViewer.addEventListener('load', restoreCamera, { once: true });
 }
 
-// Initialize
+
 loadModel(currentModelIndex);
 populateMenuItems();
 
-// Toggle description when clicking the INFO button
+//  INFO button
 document.getElementById('info-button').addEventListener('click', (e) => {
   e.stopPropagation();
   if (modelDescription.classList.contains('show')) {
@@ -210,7 +216,7 @@ document.getElementById('info-button').addEventListener('click', (e) => {
   }
 });
 
-// Close description when clicking the close button
+// Close description 
 modelDescription.addEventListener('click', (e) => {
   if (e.target.id === 'close-description') {
     hideModelDescription();
@@ -229,7 +235,7 @@ document.getElementById('prev-model').addEventListener('click', () => {
   loadModel(currentModelIndex);
 });
 
-// Keyboard navigation (optional)
+// Keyboard navigation 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowRight') {
     currentModelIndex = (currentModelIndex + 1) % models.length;
